@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_filereader/filereader.dart';
 
@@ -12,7 +10,13 @@ class FileReaderView extends StatefulWidget {
   final Widget? loadingWidget;
   final Widget? unSupportFileWidget;
 
-  FileReaderView({Key? key, required this.filePath, this.openSuccess, this.loadingWidget, this.unSupportFileWidget}) : super(key: key);
+  FileReaderView(
+      {Key? key,
+      required this.filePath,
+      this.openSuccess,
+      this.loadingWidget,
+      this.unSupportFileWidget})
+      : super(key: key);
 
   @override
   _FileReaderViewState createState() => _FileReaderViewState();
@@ -106,7 +110,10 @@ class _FileReaderViewState extends State<FileReaderView> {
   }
 
   Widget _createAndroidView() {
-    return AndroidView(viewType: "FileReader", onPlatformViewCreated: _onPlatformViewCreated, creationParamsCodec: StandardMessageCodec());
+    return AndroidView(
+        viewType: "FileReader",
+        onPlatformViewCreated: _onPlatformViewCreated,
+        creationParamsCodec: StandardMessageCodec());
   }
 
   _onPlatformViewCreated(int id) {
@@ -127,7 +134,7 @@ class _FileReaderViewState extends State<FileReaderView> {
   }
 
   String _fileType(String filePath) {
-    if (filePath == null || filePath.isEmpty) {
+    if (filePath.isEmpty) {
       return "";
     }
     int i = filePath.lastIndexOf('.');
